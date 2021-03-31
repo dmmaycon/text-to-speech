@@ -24,8 +24,7 @@ function changeLanguage() {
     initVoices();
 }
 
-function initVoices() {
-    initLanguages();
+function initVoices() {    
     voicesByLanguage      = voices.filter(voice => voice.lang.includes(languageDefault))
     
     let index = 0;
@@ -50,6 +49,7 @@ function textToSpeech() {
 
 
 (function () {
+    initLanguages();
     initVoices();
 })();
 
