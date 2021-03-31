@@ -43,8 +43,6 @@ function textToSpeech() {
     const utterance  = new SpeechSynthesisUtterance(text);
     utterance.voice  = voicesByLanguage[selectVoice.selectedIndex];
     speechSynthesis.speak(utterance);
-    console.log("Voz selecionada: " + selectVoice.selectedIndex);
-    console.log("Idioma selecionado: " + languageDefault);
 }
 
 
