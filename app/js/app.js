@@ -2,7 +2,7 @@ let   indexVoicesByLanguage = 0;
 let   languages         = window.navigator.languages;
 let   languageDefault   = window.navigator.language;
 let   voiceDefault      = speechSynthesis.getVoices().filter(voice => voice.lang.includes(languageDefault))[indexVoicesByLanguage];
-let   voicesByLanguage  = speechSynthesis.getVoices().filter(voice => voice.lang.includes(languageDefault));
+let   voicesByLanguage  = null;
 const selectLanguage    = document.getElementById('selectLanguage');
 const selectVoice       = document.getElementById('selectVoice');
 const text              = document.getElementById('textToSpeech');
@@ -16,7 +16,7 @@ function initLanguages() {
         option.text  = lang;
         selectLanguage.add(option);
     });
-    initVoices();
+    changeLanguage();
 }
 
 function changeLanguage() {
@@ -27,6 +27,7 @@ function changeLanguage() {
 
 function initVoices() {    
     let index = 0;
+    voicesByLanguage  = speechSynthesis.getVoices().filter(voice => voice.lang.includes(languageDefault));
     voicesByLanguage.forEach(voice => {
         index++;
         option = new Option;
@@ -34,7 +35,6 @@ function initVoices() {
         option.text  = voice.name;
         selectVoice.add(option);
     });
-
 }
 
 function clearText() {
