@@ -5,6 +5,7 @@ let   voiceDefault      = speechSynthesis.getVoices().filter(voice => voice.lang
 let   voicesByLanguage  = null;
 const selectLanguage    = document.getElementById('selectLanguage');
 const selectVoice       = document.getElementById('selectVoice');
+const text = document.getElementById('textToSpeech').value;
 
 
 function initLanguages() {
@@ -15,6 +16,7 @@ function initLanguages() {
         option.text  = lang;
         selectLanguage.add(option);
     });
+    initVoices();
 }
 
 function changeLanguage() {
@@ -37,8 +39,11 @@ function initVoices() {
 
 }
 
+function clearText() {
+    text.value = '';
+}
+
 function textToSpeech() {
-    const text = document.getElementById('textToSpeech').value;
     const utterance  = new SpeechSynthesisUtterance(text);
     utterance.voice  = voicesByLanguage[selectVoice.selectedIndex];
     speechSynthesis.speak(utterance);
